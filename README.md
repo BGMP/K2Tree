@@ -20,10 +20,10 @@ named `data/`. These results are then used to generate plots with R. If you want
 `K2Tree.Rproj` with RStudio and run the script. The generated plots will look as follows:
 
 ### Query Time
-<img src="img/TIME.svg" width="100%" height="100%" alt="Query Time Plot" />
+<img src="docs/TIME_SAMPLE_PLOT.svg" width="100%" height="100%" alt="Query Time Plot" />
 
 ### Memory Usage
-<img src="img/SPACE.svg" width="100%" height="100%" alt="Memory Usage Plot" />
+<img src="docs/SPACE_SAMPLE_PLOT.svg" width="100%" height="100%" alt="Memory Usage Plot" />
 
 ## Dependencies
 ### Rust
