@@ -1,7 +1,4 @@
-use std::fmt::Alignment::Center;
-use std::fmt::{Display, Formatter};
 use std::time::Instant;
-use bitvec::bitvec;
 use k2_tree::K2Tree;
 use k2_tree::matrix::BitMatrix;
 use std::mem::{size_of, size_of_val};
@@ -100,7 +97,7 @@ fn main() {
     println!("Time taken to find the value of a bit in BitMatrix: {} nanoseconds", duration_matrix.as_nanos());
     println!("Bit value at ({}, {}): {}", x, y, bit_value_matrix);
 
-    let mut tree = K2Tree::from_matrix(m2.clone(), 2, 2).unwrap();
+    let tree = K2Tree::from_matrix(m2.clone(), 2, 2).unwrap();
 
     // Measure the time to find the value of a bit in the K2Tree
     let start_tree = Instant::now();
