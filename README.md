@@ -19,15 +19,11 @@ Once built, you may run the executable directly. The program will output the res
 named `data/`. These results are then used to generate plots with R. If you want to generate the plots, simply open
 `K2Tree.Rproj` with RStudio and run the script. The generated plots will look as follows:
 
-<div align="center">
-  <h3>Query Time</h3>
-  <img src="img/TIME.svg" width="100%" height="100%" />
-</div>
+### Query Time
+<img src="img/TIME.svg" width="100%" height="100%" alt="Query Time Plot" />
 
-<div align="center">
-  <h3>Memory Usage</h3>
-  <img src="img/SPACE.svg" width="100%" height="100%" />
-</div>
+### Memory Usage
+<img src="img/SPACE.svg" width="100%" height="100%" alt="Memory Usage Plot" />
 
 ## Dependencies
 ### Rust
