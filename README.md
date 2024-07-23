@@ -24,11 +24,11 @@ will look as follows:
 
 ### Query Time
 
-![Query Time](img/TIME.png)
+![Query Time](img/TIME.svg)
 
 ### Memory Usage
 
-![Memory Usage](img/SPACE.png)
+![Memory Usage](img/SPACE.svg)
 
 ## Dependencies
 ### Rust
