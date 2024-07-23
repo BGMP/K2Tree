@@ -1,8 +1,10 @@
 use std::fmt::Alignment::Center;
 use std::fmt::{Display, Formatter};
+use std::time::Instant;
 use bitvec::bitvec;
 use k2_tree::K2Tree;
 use k2_tree::matrix::BitMatrix;
+use std::mem::{size_of, size_of_val};
 
 fn print_matrix(matrix: &BitMatrix) {
     for y in 0..matrix.height {
@@ -87,9 +89,34 @@ fn main() {
     m2.set(6, 4, true).unwrap();
     m2.set(7, 4, true).unwrap();
 
-    print_matrix(&m2);
+    // Measure the time to find the value of a bit in the BitMatrix
+    let x = 6;
+    let y = 1;
 
-    let mut tree = K2Tree::from_matrix(m2, 2, 2).unwrap();
+    let start_matrix = Instant::now();
+    let bit_value_matrix = m2.get(x, y).unwrap();
+    let duration_matrix = start_matrix.elapsed();
+
+    println!("Time taken to find the value of a bit in BitMatrix: {} nanoseconds", duration_matrix.as_nanos());
+    println!("Bit value at ({}, {}): {}", x, y, bit_value_matrix);
+
+    let mut tree = K2Tree::from_matrix(m2.clone(), 2, 2).unwrap();
+
+    // Measure the time to find the value of a bit in the K2Tree
+    let start_tree = Instant::now();
+    let bit_value_tree = tree.get(x, y).unwrap();
+    let duration_tree = start_tree.elapsed();
+
+    println!("Time taken to find the value of a bit in K2Tree: {} nanoseconds", duration_tree.as_nanos());
+    println!("Bit value at ({}, {}): {}", x, y, bit_value_tree);
+
+    // Measure space used by BitMatrix
+    let bit_matrix_size = size_of_val(&m2) + (m2.width * m2.height) / 8;
+    println!("Space used by BitMatrix: {} bytes", bit_matrix_size);
+
+    // Measure space used by K2Tree
+    let k2_tree_size = size_of_val(&tree) + tree.stems.len() * size_of::<u8>() + tree.leaves.len() * size_of::<u8>();
+    println!("Space used by K2Tree: {} bytes", k2_tree_size);
 
     print_tree(&tree);
 }
