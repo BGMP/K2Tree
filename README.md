@@ -22,13 +22,15 @@ The results are saved to a CSV file in the `data/` directory, which are then use
 want to generate the plots, simply open `K2Tree.Rproj` with RStudio and run the script. The generated plots
 will look as follows:
 
-### Query Time
+<div align="center">
+  <h3>Query Time</h3>
+  <img src="img/TIME.svg" width="100%" height="100%" />
+</div>
 
-![Query Time](img/TIME.svg)
-
-### Memory Usage
-
-![Memory Usage](img/SPACE.svg)
+<div align="center">
+  <h3>Memory Usage</h3>
+  <img src="img/SPACE.svg" width="100%" height="100%" />
+</div>
 
 ## Dependencies
 ### Rust
