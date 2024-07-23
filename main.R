@@ -50,4 +50,4 @@ space_plot <- ggplot(data) +
 print(space_plot)
 
 ggsave("img/SPACE.png", plot = space_plot, width = 10, height = 6, dpi = 300)
-
+ggsave("img/SPACE.svg", plot = space_plot)
