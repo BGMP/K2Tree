@@ -48,7 +48,7 @@ fn test_query_time(matrix_size: usize) {
 }
 
 fn main() {
-    let sizes = [4, 8, 16, 32, 64, 128, 256, 512];
+    let sizes = [4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096];
 
     for &size in sizes.iter() {
         test_query_time(size);
