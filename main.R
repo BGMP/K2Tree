@@ -1,7 +1,7 @@
 library(ggplot2)
 library(scales)
 
-data <- read_csv("data/time.csv")
+data <- read.csv("data/time.csv")
 
 n_breakpoints <- c(4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096)
 
@@ -21,6 +21,8 @@ time_plot <- ggplot(data) +
   scale_x_log10(breaks = n_breakpoints)
 
 ggsave("img/TIME.png", plot = time_plot, width = 10, height = 6, dpi = 300)
+
+print(time_plot)
 
 data <- read.csv("data/space.csv")
 
