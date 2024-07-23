@@ -21,6 +21,7 @@ time_plot <- ggplot(data) +
   scale_x_log10(breaks = n_breakpoints)
 
 ggsave("img/TIME.png", plot = time_plot, width = 10, height = 6, dpi = 300)
+ggsave("img/TIME.svg", plot = space_plot)
 
 print(time_plot)
 
