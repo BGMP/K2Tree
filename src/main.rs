@@ -6,7 +6,7 @@ use k2_tree::matrix::BitMatrix;
 use std::mem::{size_of, size_of_val};
 use rand::{Rng, thread_rng};
 use rand_distr::{Normal, Distribution};
-use crate::utils::{get_bit_manual, print_matrix, write_space_to_csv, write_time_to_csv};
+use crate::utils::{get_bit_manual, write_space_to_csv, write_time_to_csv};
 
 //
 // This function tests the time taken to find the value of a bit in a BitMatrix and a K2Tree.
