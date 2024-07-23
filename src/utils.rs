@@ -1,3 +1,6 @@
+use std::error::Error;
+use std::fs::OpenOptions;
+use csv::{WriterBuilder};
 use k2_tree::K2Tree;
 use k2_tree::matrix::BitMatrix;
 
@@ -55,4 +58,55 @@ pub fn print_tree(tree: &K2Tree) {
     }
 
     println!("]");
+}
+
+pub fn write_time_to_csv(data: &[(usize, u128, u128)], file_path: &str) -> Result<(), Box<dyn Error>> {
+    let file_exists = std::fs::metadata(file_path).is_ok();
+
+    let file = OpenOptions::new()
+        .create(true)
+        .append(true)
+        .open(file_path)?;
+
+    let mut wtr = WriterBuilder::new()
+        .has_headers(!file_exists)
+        .from_writer(file);
+
+    // Write the header if the file does not exist
+    if !file_exists {
+        wtr.write_record(&["n", "bitmatrix", "k2tree"])?;
+    }
+
+    // Write the data rows
+    for &(n, bitmatrix, k2tree) in data {
+        wtr.write_record(&[n.to_string(), bitmatrix.to_string(), k2tree.to_string()])?;
+    }
+
+    wtr.flush()?;
+    Ok(())
+}
+
+pub fn write_space_to_csv(data: &[(usize, usize, usize)], file_path: &str) -> Result<(), Box<dyn Error>> {
+    let file_exists = std::fs::metadata(file_path).is_ok();
+
+    let file = OpenOptions::new()
+        .create(true)
+        .append(true)
+        .open(file_path)?;
+
+    let mut wtr = WriterBuilder::new()
+        .has_headers(!file_exists)
+        .from_writer(file);
+
+    // Write the header if the file does not exist
+    if !file_exists {
+        wtr.write_record(&["n", "bitmatrix", "k2tree"])?;
+    }
+
+    for &(n, bitmatrix, k2tree) in data {
+        wtr.write_record(&[n.to_string(), bitmatrix.to_string(), k2tree.to_string()])?;
+    }
+
+    wtr.flush()?;
+    Ok(())
 }
