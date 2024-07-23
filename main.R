@@ -35,7 +35,7 @@ space_plot <- ggplot(data) +
   geom_point(aes(x = n, y = bitmatrix, color = "BitMatrix"), size = 3) +
   geom_line(aes(x = n, y = k2tree, color = "K2Tree"), size = 1) +
   geom_point(aes(x = n, y = k2tree, color = "K2Tree"), size = 3) +
-  scale_x_continuous(trans = 'log2') +
+  scale_x_continuous(trans = 'log2', breaks = c(4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096)) +  # Set custom breaks
   scale_y_continuous(trans = 'log', labels = label_comma(accuracy = 1)) + # Format Y-axis labels without decimals
   labs(title = "BitMatrix and K2Tree Size vs. n",
        x = "n (Size of Matrix)",
@@ -50,3 +50,4 @@ space_plot <- ggplot(data) +
 print(space_plot)
 
 ggsave("img/SPACE.png", plot = space_plot, width = 10, height = 6, dpi = 300)
+
