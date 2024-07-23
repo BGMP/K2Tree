@@ -5,6 +5,9 @@ library(readr)
 # Read the CSV file
 data <- read_csv("data/time.csv")
 
+# Define breakpoints for n axis
+n_breakpoints <- c(4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096)
+
 # Create the plot
 ggplot(data) +
   geom_point(aes(x = n, y = bitmatrix, color = "BitMatrix"), size = 2) +
@@ -18,4 +21,6 @@ ggplot(data) +
        y = "Time (nanoseconds)",
        color = "Legend") +
   theme_minimal() +
-  scale_color_manual(values = c("BitMatrix" = "green", "K2Tree" = "orange"))
+  scale_color_manual(values = c("BitMatrix" = "green", "K2Tree" = "orange")) +
+  # Add the breakpoints to the x-axis
+  scale_x_log10(breaks = n_breakpoints) 
