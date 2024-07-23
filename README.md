@@ -16,11 +16,8 @@ cargo build --release
 
 ## Running
 Once built, you may run the executable directly. The program will output the results to csv files into a directory
-named `data/`.
-
-The results are saved to a CSV file in the `data/` directory, which are then used to generate plots with R. If you
-want to generate the plots, simply open `K2Tree.Rproj` with RStudio and run the script. The generated plots
-will look as follows:
+named `data/`. These results are then used to generate plots with R. If you want to generate the plots, simply open
+`K2Tree.Rproj` with RStudio and run the script. The generated plots will look as follows:
 
 <div align="center">
   <h3>Query Time</h3>
