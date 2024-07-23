@@ -6,7 +6,7 @@ use k2_tree::matrix::BitMatrix;
 use std::mem::{size_of, size_of_val};
 use rand::{Rng, thread_rng};
 use rand_distr::{Normal, Distribution};
-use crate::utils::{get_bit_manual, write_space_to_csv, write_time_to_csv};
+use crate::utils::{get_bit_manual, print_matrix, write_space_to_csv, write_time_to_csv};
 
 //
 // This function tests the time taken to find the value of a bit in a BitMatrix and a K2Tree.
@@ -21,12 +21,18 @@ fn test_query_time(matrix_size: usize) -> (usize, u128, u128) {
     let mut m = BitMatrix::with_dimensions(matrix_size, matrix_size);
     let mut rng = thread_rng();
     let normal = Normal::new(0.5, 0.9).unwrap();
+    let normal_x = Normal::new(matrix_size as f64 / 2.0, matrix_size as f64 / 6.0).unwrap();
+    let normal_y = Normal::new(matrix_size as f64 / 2.0, matrix_size as f64 / 6.0).unwrap();
     let threshold = 1.28;
 
-    for y in 0..matrix_size {
-        for x in 0..matrix_size {
-            m.set(x, y, normal.sample(&mut rng) > threshold).unwrap();
-        }
+    for _ in 0..matrix_size {
+        let mut x = normal_x.sample(&mut rng).round() as usize;
+        let mut y = normal_y.sample(&mut rng).round() as usize;
+
+        x = x.clamp(0, matrix_size - 1);
+        y = y.clamp(0, matrix_size - 1);
+
+        m.set(x, y, normal.sample(&mut rng) > threshold).unwrap();
     }
 
     let tree = K2Tree::from_matrix(m.clone(), 2, 2).unwrap();
@@ -60,12 +66,18 @@ fn test_space(matrix_size: usize) -> (usize, usize, usize) {
     let mut m = BitMatrix::with_dimensions(matrix_size, matrix_size);
     let mut rng = thread_rng();
     let normal = Normal::new(0.5, 0.9).unwrap();
+    let normal_x = Normal::new(matrix_size as f64 / 2.0, matrix_size as f64 / 6.0).unwrap();
+    let normal_y = Normal::new(matrix_size as f64 / 2.0, matrix_size as f64 / 6.0).unwrap();
     let threshold = 1.28;
 
-    for y in 0..matrix_size {
-        for x in 0..matrix_size {
-            m.set(x, y, normal.sample(&mut rng) > threshold).unwrap();
-        }
+    for _ in 0..matrix_size {
+        let mut x = normal_x.sample(&mut rng).round() as usize;
+        let mut y = normal_y.sample(&mut rng).round() as usize;
+
+        x = x.clamp(0, matrix_size - 1);
+        y = y.clamp(0, matrix_size - 1);
+
+        m.set(x, y, normal.sample(&mut rng) > threshold).unwrap();
     }
 
     let tree = K2Tree::from_matrix(m.clone(), 2, 2).unwrap();
