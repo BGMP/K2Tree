@@ -6,3 +6,5 @@ edition = "2021"
 [dependencies]
 k2_tree = "0.5.3"
 bitvec = "0.17.4"
+rand = "0.8.0"
+rand_distr = "0.4.3"
